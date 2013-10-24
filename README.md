@@ -12,4 +12,6 @@ Advanced Angular Chat
 * Clickable hyperlinks
 * HTML messages allowed
 
-See the tutorial at http://jadendreamer.wordpress.com/2013/10/22/advanced-angular-chatroom-tutorial-no-database-or-sockets-required/
+Tutorial: http://jadendreamer.wordpress.com/2013/10/22/advanced-angular-chatroom-tutorial-no-database-or-sockets-required/
+
+Live Demo: http://plnkr.co/edit/7JyS4H?p=preview
