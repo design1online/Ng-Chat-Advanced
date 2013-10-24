@@ -1,0 +1,22 @@
+<div class="text-center">
+  <h1>Ng-Angular Chat</h1>
+  <h5><i class="icon-info-sign"></i> using Bootstrap and PubNub</h5>
+  <p>&nbsp;</p>
+  <div ng-show="realtimeStatus == 0" class="status">
+    <span class="alert alert-error"><i class="icon-download"></i></span>
+  </div>
+  <div ng-show="realtimeStatus == 1" class="status">
+    <span class="alert alert-info"><i class="icon-refresh"></i></span>
+  </div>
+  <div ng-show="realtimeStatus == 2" class="status">
+    <span class="alert alert-success"><i class="icon-upload"></i></span>
+  </div>
+  <div id="channelDropdown"><select ng-model="selectedChannel" ng-change="initChat(selectedChannel)" ng-options="obj.value as obj.text for obj in chatChannels"></select></div>
+  <div ng-show="loggedIn" id="logout">
+    <span class="btn" ng-click="attemptLogout()"><i class="icon-off"></i> Logout</span>
+  </div>
+</div>
+<p>&nbsp;</p>
+<div ng-show="errorMsg" class="alert alert-error">
+  <i class="icon-warning-sign"></i> <b>Error:</b> {{errorMsg}}
+</div>
