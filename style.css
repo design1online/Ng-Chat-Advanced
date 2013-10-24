@@ -1,0 +1,46 @@
+#chat {
+ height: 31em; 
+ overflow: auto;
+ background-color: #EEE;
+ border-radius: .25em;
+ margin-bottom: 1em;
+}
+
+#logout {
+  float: right;
+  margin-top: -1.35em;
+}
+
+#channelDropdown {
+  margin-right: .3em;
+  margin-left: .3em;
+  float: left;
+  margin-top: -1.35em;
+}
+
+#fontModalButton {
+  height: 21px;
+}
+
+#selectedColor {
+  width: 100%;
+  border: 1px solid #000000; 
+}
+
+.alert {
+  padding: 8px !important;
+}
+
+.status {
+  float: left;
+  margin-top: -1em;
+}
+
+.left {
+  float: left;
+  margin-right: .25em;
+}
+
+.icon {
+  cursor: pointer;
+}
