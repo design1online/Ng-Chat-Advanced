@@ -1,0 +1,82 @@
+<!doctype html>
+<html ng-app="angular_chat">
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+    <div pub-key="pub-c-a6378144-60dd-4b70-9d35-ce3ca44578b5" sub-key="sub-c-2ef302e0-373e-11e3-a5ee-02ee2ddab7fe" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
+    <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+    <script src="angular-chat.js"></script>
+    <script src="angular-colorpicker.js"></script>
+    <script src="angular-colorpicker-modal.js"></script>
+    <link rel="stylesheet" href="style.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+  <body>
+  <div class='container-fluid' ng-controller="chatCtrl">
+    <div ng-include="'chatHeader.html'"></div>
+    <div ng-Show="!loggedIn" id="login" class="alert text-center">
+      <h2>Login</h2>
+      <label for="username">
+        <b>Username:</b>
+      </label>
+      <label>
+        <input type="text" ng-model="message.username" />
+      </label>
+      <span ng-click="attemptLogin()" class="btn">
+        <i class="icon-user"></i> Go Chat
+      </span>
+    </div>
+    <div ng-Show="loggedIn" id="chat" class="row table-responsive">
+      <table class="table table-bordered table-condensed table-hover table-striped">
+        <tr ng-repeat="chat in chatMessages">
+            <td style="width: 30%;">
+              <b>{{chat.username}}</b><br/>
+              <small>
+               {{chat.date}} @ {{chat.time}}
+              </small>
+            </td>
+            <td colspan="2">
+              <font color="{{chat.color}}"><span ng-bind-html-unsafe="chat.text"></span></font>
+            </td>
+        </tr>
+        <tr ng-show="chatMessages.length == 0">
+          <td colspan="3">No messages yet!</td>
+        </tr>
+      </table>
+    </div>
+    <form ng-Show="loggedIn" class="form-inline text-center" ui-keypress="{13:'postMessage()'}">
+      <div id="inputMessage" class="control-group">
+        <div ng-controller="ColorPickerCtrl" class="left">
+          <script type='text/ng-template' id='fontcolor.html'>
+            <div class="modal-header">
+              <h3>Change Font Color</h3>
+            </div>
+            <div ng-modal="colorPicker">
+              <ng-color-circle height="250" width="250" model-object="colorpicker" model-property="color"></ng-color-circle>
+              <div class="selectedColor text-center" style="background-color:{{colorpicker.color}}">Selected Color</div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" ng-click="ok()">Done</button>
+            </div>
+          </script>
+          <span ng-click="open()" id="fontModalButton" class="btn" style="background:{{color}} !important;">
+            <i class="icon-th"></i>
+          </span>
+        </div>
+        <span class="btn left" ng-click="toggleEmoticons = !toggleEmoticons">
+          <img ng-src="{{emoticon_url}}{{emoticons[':)']}}" />
+        </span>
+        <input type="text" placeholder="Say hello!" ng-model="message.text" />
+        <span ng-click="postMessage()" class="btn">
+          <i class="icon-comment"></i> Post
+        </span>
+      </div>
+      <span ng-show="toggleEmoticons == true" id="emoticonList" ng-repeat="(key, image) in emoticons">
+        <img class="icon" ng-src="{{emoticon_url}}{{image}}" ng-click="insertEmoticon(key)" />
+      </span>
+    </form>
+    <div ng-include="'chatFooter.html'"></div>
+  </div>
+  </body>
+</html>
