@@ -4,7 +4,7 @@ Advanced Angular Chat
 ** Features Include **
 * Fully customizable
 * PubNub messaging (no server or database required)
-* Logout/logout
+* Login and logout
 * Uses bootstrap
 * Emoticons
 * Change font color with popup color picker
